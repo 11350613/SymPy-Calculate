@@ -1,3 +1,7 @@
+# Derived from DeepSeek Harness minimal preset.
+# Copyright (c) 2026 DeepSeek, MIT License.
+# See THIRD_PARTY_NOTICES.md.
+
 # The `sympy-calculate` agent preset: `minimal` plus one stateless SymPy tool.
 #
 # Same minimal plane as `minimal`: the persona is the complete system prompt,
