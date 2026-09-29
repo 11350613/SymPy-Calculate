@@ -58,9 +58,21 @@ function resolvePython(root) {
   return undefined
 }
 
-function clamp(text) {
-  if (text.length <= MAX_RESULT_CHARS) return text
+function clamp(text, truncated = false) {
+  if (!truncated && text.length <= MAX_RESULT_CHARS) return text
   return `${text.slice(0, MAX_RESULT_CHARS)}\n... (truncated at ${MAX_RESULT_CHARS} characters)`
+}
+
+function captureOutput(stream) {
+  const output = { text: '', truncated: false }
+  stream.on('data', (chunk) => {
+    if (output.truncated) return
+    const text = output.text === '' ? String(chunk).trimStart() : String(chunk)
+    const remaining = MAX_RESULT_CHARS - output.text.length
+    output.text += text.slice(0, remaining)
+    if (text.length > remaining) output.truncated = true
+  })
+  return output
 }
 
 /**
@@ -71,6 +83,11 @@ function clamp(text) {
  */
 function runScript(code, timeoutMs, signal) {
   return new Promise((resolve) => {
+    if (signal?.aborted) {
+      resolve({ ok: false, error: 'sympy_calculate: cancelled' })
+      return
+    }
+
     const root = resolveRoot()
     const python = resolvePython(root)
     if (python === undefined) {
@@ -86,62 +103,77 @@ function runScript(code, timeoutMs, signal) {
       cwd: root,
       env: { ...process.env, PYTHONPATH: root, PYTHONIOENCODING: 'utf-8' },
       stdio: ['pipe', 'pipe', 'pipe'],
+      detached: process.platform !== 'win32',
     })
 
-    let stdout = ''
-    let stderr = ''
+    const stdout = captureOutput(child.stdout)
+    const stderr = captureOutput(child.stderr)
     let settled = false
-    let timedOut = false
 
     const settle = (outcome) => {
       if (settled) return
       settled = true
+      clearTimeout(timer)
+      if (signal !== undefined) signal.removeEventListener('abort', onAbort)
+      child.stdin.destroy()
+      child.stdout.destroy()
+      child.stderr.destroy()
       resolve(outcome)
     }
 
-    const timer = setTimeout(() => {
-      timedOut = true
-      child.kill('SIGKILL')
-    }, timeoutMs)
-
-    const onAbort = () => child.kill('SIGKILL')
-    if (signal !== undefined) {
-      if (signal.aborted) onAbort()
-      else signal.addEventListener('abort', onAbort, { once: true })
+    const terminate = (error) => {
+      if (settled) return
+      try {
+        if (child.pid !== undefined) {
+          if (process.platform === 'win32') child.kill('SIGKILL')
+          else process.kill(-child.pid, 'SIGKILL')
+        }
+      } catch (cause) {
+        if (cause.code !== 'ESRCH') error += `; cannot terminate Python: ${String(cause)}`
+      }
+      settle({ ok: false, error })
     }
 
-    child.stdout.on('data', (chunk) => { stdout += chunk })
-    child.stderr.on('data', (chunk) => { stderr += chunk })
+    const onAbort = () => terminate('sympy_calculate: cancelled')
+    const timer = setTimeout(() => {
+      terminate(`sympy_calculate: timed out after ${Math.round(timeoutMs / 1000)} seconds`)
+    }, timeoutMs)
+
     child.stdin.on('error', () => {})
 
     child.on('error', (error) => {
-      clearTimeout(timer)
       settle({ ok: false, error: `sympy_calculate: cannot launch Python: ${String(error)}` })
     })
 
     child.on('close', (exitCode, exitSignal) => {
-      clearTimeout(timer)
-      if (signal !== undefined) signal.removeEventListener('abort', onAbort)
-      if (timedOut) {
-        settle({ ok: false, error: `sympy_calculate: timed out after ${Math.round(timeoutMs / 1000)} seconds` })
-        return
-      }
+      if (settled) return
       if (exitSignal !== null && exitCode !== 0) {
         settle({ ok: false, error: `sympy_calculate: killed by ${exitSignal}` })
         return
       }
+      const stdoutText = stdout.text.trim()
+      const stderrText = stderr.text.trim()
       if (exitCode !== 0) {
+        const output = stderrText === '' ? stdout : stderr
         settle({
           ok: false,
-          error: `sympy_calculate: exit code ${exitCode}\n${clamp(stderr.trim() || stdout.trim())}`,
+          error: `sympy_calculate: exit code ${exitCode}\n${clamp(output.text.trim(), output.truncated)}`,
         })
         return
       }
-      let text = stdout.trim()
-      if (text === '') text = stderr.trim() === '' ? '(no output)' : stderr.trim()
-      else if (stderr.trim() !== '') text += `\n[stderr]\n${stderr.trim()}`
-      settle({ ok: true, text })
+      let text = stdoutText
+      if (text === '') text = stderrText === '' ? '(no output)' : stderrText
+      else if (stderrText !== '') text += `\n[stderr]\n${stderrText}`
+      settle({ ok: true, text, truncated: stdout.truncated || stderr.truncated })
     })
+
+    if (signal !== undefined) {
+      signal.addEventListener('abort', onAbort, { once: true })
+      if (signal.aborted) {
+        onAbort()
+        return
+      }
+    }
 
     child.stdin.end(code)
   })
@@ -183,7 +215,7 @@ export function apply(ctx) {
       const timeoutMs = DEFAULT_TIMEOUT_MS
       const outcome = await runScript(code, timeoutMs, exec?.signal)
       if (!outcome.ok) throw new Error(outcome.error)
-      return clamp(outcome.text)
+      return clamp(outcome.text, outcome.truncated)
     },
   })
 }
