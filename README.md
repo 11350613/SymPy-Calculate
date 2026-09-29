@@ -1,8 +1,6 @@
 # SymPy-Calculate
 
-A DeepSeek Harness agent preset based on `minimal`. 
-
-It adds one stateless
+A DeepSeek Harness agent preset based on `minimal`. It adds one stateless
 tool, `sympy_calculate`, which runs a complete Python script in a fresh
 process using a local SymPy development checkout.
 
