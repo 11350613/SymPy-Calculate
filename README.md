@@ -12,8 +12,14 @@ process using a local SymPy development checkout.
 
 ## Tool
 
-```text
-sympy_calculate(code="...")
+`sympy_calculate`
+
+```python
+{
+  "code": "from sympy import symbols, integrate, exp, oo\n\nx = symbols('x')\nresult = integrate(exp(-x**2), (x, -oo, oo))\nprint(result)\n"
+}
+
+{sqrt(pi)}
 ```
 
 Each call starts a fresh Python process. State does not persist between calls.
