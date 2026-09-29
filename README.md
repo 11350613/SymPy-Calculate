@@ -6,13 +6,6 @@ It adds one stateless
 tool, `sympy_calculate`, which runs a complete Python script in a fresh
 process using a local SymPy development checkout.
 
-Override with:
-
-```text
-SYMPY_ROOT
-SYMPY_PYTHON
-```
-
 ## Tested with
 
 - Ubuntu 24.04.4 LTS
