@@ -7,7 +7,7 @@ process using a local SymPy development checkout.
 ## Tested on
 
 - Ubuntu 24.04.4 LTS
-- DeepSeek Harness commit: c291e7961a515f6d7af9304e7fd1d257929aef26
+- DeepSeek Harness commit: [deepseek-ai/deepseek-harness@c291e79](https://github.com/deepseek-ai/deepseek-harness/commit/c291e7961a515f6d7af9304e7fd1d257929aef26)
 - SymPy commit: [sympy/sympy@6aabf6a](https://github.com/sympy/sympy/commit/6aabf6ac9eddd1c5141ff9a3a35dcb53a7b02228)
 
 ## Tool
