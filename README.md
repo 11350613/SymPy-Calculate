@@ -19,7 +19,7 @@ process using a local SymPy development checkout.
   "code": "from sympy import *\n\nx = symbols('x')\nI = integrate(exp(-x**2), (x, -oo, oo))\nprint(I)\n"
 }
 
-{sqrt(pi)}
+sqrt(pi)
 ```
 
 Each call starts a fresh Python process. State does not persist between calls.
