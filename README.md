@@ -16,7 +16,7 @@ process using a local SymPy development checkout.
 
 ```python
 {
-  "code": "from sympy import *\n\nx = symbols('x')\nI = integrate(exp(-x**2), (x, -oo, oo))\nprint(I)\n"
+  "code": "from sympy import *\n\nx = symbols('x')\nprint(integrate(exp(-x**2), (x, -oo, oo)))\n"
 }
 
 sqrt(pi)
