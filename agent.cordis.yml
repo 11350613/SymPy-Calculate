@@ -18,7 +18,7 @@
 
 # The stateless SymPy tool. Its plugin ships beside this file at
 # `./tool/sympy-calculate.mjs`. The row registers a tool only, so it stays
-# outside the isolated shell group, like the wolfram and isympy presets.
+# outside the isolated shell group.
 - id: tool-sympy-calculate
   name: './tool/sympy-calculate.mjs'
 
