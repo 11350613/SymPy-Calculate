@@ -21,5 +21,3 @@ process using a local SymPy development checkout.
 
 sqrt(pi)
 ```
-
-Each call starts a fresh Python process. State does not persist between calls.
