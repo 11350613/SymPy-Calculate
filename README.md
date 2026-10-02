@@ -77,7 +77,7 @@ environment that starts DeepSeek Harness:
 
 ## Install
 
-Install into the `web` profile. The commands pin `v1.0.2`, the tested
+Install into the `web` profile. The commands pin `v1.0.3`, the tested
 plugin revision. If `dsh` is already on your `PATH`, replace the
 `npx --yes @deepseek-ai/dsh@0.2.0-rc.2` prefix with `dsh`.
 
@@ -85,7 +85,7 @@ HTTPS tarball, recommended because it needs no GitHub SSH key:
 
 ```sh
 npx --yes @deepseek-ai/dsh@0.2.0-rc.2 plugin --profile web add \
-  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.2
+  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.3
 ```
 
 <details>
@@ -95,14 +95,14 @@ Git shorthand, when GitHub SSH access is already configured:
 
 ```sh
 npx --yes @deepseek-ai/dsh@0.2.0-rc.2 plugin --profile web add \
-  github:11350613/SymPy-Calculate#v1.0.2
+  github:11350613/SymPy-Calculate#v1.0.3
 ```
 
 From a source checkout, use `pnpm dsh` and prefer the tarball form:
 
 ```sh
 pnpm dsh plugin --profile web add \
-  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.2
+  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.3
 ```
 
 </details>
@@ -175,7 +175,7 @@ a tool error.
 
 ## Tested on
 
-- SymPy-Calculate release: `v1.0.2`
+- SymPy-Calculate release: `v1.0.3`
 - Ubuntu 24.04.4 LTS
 - DeepSeek Harness commit: [deepseek-ai/deepseek-harness@639ed01](https://github.com/deepseek-ai/deepseek-harness/commit/639ed015397290b3745d163aafe02ffee4aa3f84)
 - SymPy commit: [sympy/sympy@6aabf6a](https://github.com/sympy/sympy/commit/6aabf6ac9eddd1c5141ff9a3a35dcb53a7b02228)
