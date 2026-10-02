@@ -6,31 +6,7 @@ process using a local SymPy development checkout.
 
 ## Install
 
-```sh
-dsh plugin --profile web add github:11350613/SymPy-Calculate
-dsh web
-```
-
-The first command creates the `web` profile when it does not exist yet, installs
-the bundle, and adds it to that profile's bundle list. The Web UI's
-**Plugins → Add plugin** dialog installs into the same profile and takes the same
-string.
-
-Select **SymPy Calculate** when creating a session.
-
-Run the published package without a global install:
-
-```sh
-npx @deepseek-ai/dsh plugin --profile web add github:11350613/SymPy-Calculate
-npx @deepseek-ai/dsh web
-```
-
-Run a source checkout from its repository root:
-
-```sh
-pnpm dsh plugin --profile web add github:11350613/SymPy-Calculate
-pnpm dsh web
-```
+[WIP]
 
 ## Tested on
 
