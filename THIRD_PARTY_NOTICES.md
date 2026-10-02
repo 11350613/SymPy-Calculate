@@ -12,7 +12,7 @@ This repository includes work derived from the DeepSeek Harness
 
 Derived file:
 
-- `agent.cordis.yml`
+- `cordis.patch.yml`
 
 MIT License
 
