@@ -1,2 +1,0 @@
-name: SymPy Calculate
-description: Minimal shell plus sympy_calculate, a stateless runner for the local SymPy development checkout.

@@ -1,0 +1,49 @@
+# The SymPy-Calculate bundle: the `minimal` agent plane plus one stateless tool.
+# Rows below are preset children, so they resolve by package name. The loader
+# rebases relative plugin names only for top-level inserted rows.
+
+- insert:
+    - id: preset-sympy-calculate
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: sympy-calculate
+        name: SymPy Calculate
+        description: The minimal plane plus sympy_calculate, a stateless runner for a local SymPy development checkout.
+        order: 5
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              prefix: You are a helpful software engineer assistant.
+              complete: true
+              includeRuntimeContext: false
+
+          - id: tool-sympy-calculate
+            name: dsh-sympy-calculate
+
+          - id: persistent-shell
+            name: cordis:group
+            group: true
+            isolate:
+              terminals: true
+            config:
+              - id: pty
+                name: '@deepseek-ai/dsh-terminal'
+
+              - id: terminal-bash
+                name: '@deepseek-ai/dsh-terminal-bash'
+                config:
+                  timeoutMs: 300000
+
+              - id: persistent-bash
+                name: '@deepseek-ai/dsh-tool-bash-persistent'
+                config:
+                  timeoutMs: 300000
+                  description: |-
+                    Run commands in a bash shell
+                    * When invoking this tool, the contents of the "command" parameter does NOT need to be XML-escaped.
+                    * Network access depends on the task environment. Prefer configured mirrors/proxies when they are available.
+                    * State is persistent across command calls and discussions with the user.
+                    * To inspect a particular line range of a file, e.g. lines 10-25, try 'sed -n 10,25p /path/to/the/file'.
+                    * Please avoid commands that may produce a very large amount of output.
+                    * Please run long lived commands in the background, e.g. 'sleep 10 &' or start a server in the background.
