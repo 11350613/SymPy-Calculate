@@ -13,7 +13,7 @@ process against a local SymPy development checkout.
 - One preset: the `minimal` plane plus `sympy_calculate`.
 - Every call starts a fresh Python process, so no state survives between calls.
 - Points at a local SymPy checkout, so edits to that checkout apply immediately.
-- Each call is bounded by a 120-second timeout and a 2,000,000-character output cap.
+- Each call is bounded by a 120-second timeout; stdout and stderr are each capped at 2,000,000 characters.
 
 ## Requirements
 
@@ -77,7 +77,7 @@ environment that starts DeepSeek Harness:
 
 ## Install
 
-Install into the `web` profile. The commands pin `v1.0.3`, the tested
+Install into the `web` profile. The commands pin `v1.0.4`, the tested
 plugin revision. If `dsh` is already on your `PATH`, replace the
 `npx --yes @deepseek-ai/dsh@0.2.0-rc.2` prefix with `dsh`.
 
@@ -85,7 +85,7 @@ HTTPS tarball, recommended because it needs no GitHub SSH key:
 
 ```sh
 npx --yes @deepseek-ai/dsh@0.2.0-rc.2 plugin --profile web add \
-  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.3
+  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.4
 ```
 
 <details>
@@ -95,14 +95,14 @@ Git shorthand, when GitHub SSH access is already configured:
 
 ```sh
 npx --yes @deepseek-ai/dsh@0.2.0-rc.2 plugin --profile web add \
-  github:11350613/SymPy-Calculate#v1.0.3
+  github:11350613/SymPy-Calculate#v1.0.4
 ```
 
 From a source checkout, use `pnpm dsh` and prefer the tarball form:
 
 ```sh
 pnpm dsh plugin --profile web add \
-  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.3
+  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.4
 ```
 
 </details>
@@ -140,21 +140,21 @@ npx --yes @deepseek-ai/dsh@0.2.0-rc.2 --profile web --no-open
 In a session using the **SymPy Calculate** preset, ask:
 
 ```markdown
-Use sympy_calculate to compute $\int_{-\infty}^{\infty} \frac{\sin x}{x}\,\mathrm{d}x$.
+Use sympy_calculate to compute $\int_{-\infty}^{\infty} \frac{x^2}{1 + x^4}\,\mathrm{d}x$.
 ```
 
 `sympy_calculate` expects one complete script:
 
 ```json
 {
-  "code": "from sympy import *\n\nx = symbols('x')\nprint(integrate(sin(x)/x, (x, -oo, oo)))\n"
+  "code": "from sympy import *\n\nx = symbols('x')\nprint(integrate(x**2 / (1 + x**4), (x, -oo, oo)))\n"
 }
 ```
 
 Output:
 
 ```text
-pi
+sqrt(2)*pi/2
 ```
 
 Because every call starts a fresh interpreter and pays the SymPy import
@@ -175,7 +175,7 @@ a tool error.
 
 ## Tested on
 
-- SymPy-Calculate release: `v1.0.3`
+- SymPy-Calculate release: `v1.0.4`
 - Ubuntu 24.04.4 LTS
 - DeepSeek Harness commit: [deepseek-ai/deepseek-harness@639ed01](https://github.com/deepseek-ai/deepseek-harness/commit/639ed015397290b3745d163aafe02ffee4aa3f84)
 - SymPy commit: [sympy/sympy@6aabf6a](https://github.com/sympy/sympy/commit/6aabf6ac9eddd1c5141ff9a3a35dcb53a7b02228)
