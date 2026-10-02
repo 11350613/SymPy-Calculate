@@ -136,23 +136,22 @@ npx --yes @deepseek-ai/dsh@0.2.0-rc.2 --profile web --no-open
 
 In a session using the **SymPy Calculate** preset, ask:
 
-```text
-Use sympy_calculate to integrate exp(-x**2) from -oo to oo.
+```markdown
+Use sympy_calculate to compute $\int_{-\infty}^{\infty} \frac{\sin x}{x}\,\mathrm{d}x$.
 ```
 
-`sympy_calculate` expects one complete script. Include imports and print the
-results:
+`sympy_calculate` expects one complete script:
 
 ```json
 {
-  "code": "from sympy import *\n\nx = symbols('x')\nprint(integrate(exp(-x**2), (x, -oo, oo)))\n"
+  "code": "from sympy import *\n\nx = symbols('x')\nprint(integrate(sin(x)/x, (x, -oo, oo)))\n"
 }
 ```
 
 Output:
 
 ```text
-sqrt(pi)
+pi
 ```
 
 Because every call starts a fresh interpreter and pays the SymPy import
