@@ -29,7 +29,7 @@ process against a local SymPy development checkout.
   ~/sympy-dev/sympy/venv/bin/python3
   ```
 
-  Set it up once on Ubuntu or another POSIX system:
+  Set it up once on Ubuntu, the tested platform:
 
   ```sh
   git clone https://github.com/sympy/sympy.git ~/sympy-dev/sympy
@@ -50,26 +50,23 @@ process against a local SymPy development checkout.
   export SYMPY_PYTHON=/path/to/venv/bin/python
   ```
 
-  On Windows, set `SYMPY_PYTHON` explicitly: the built-in defaults look for
-  the POSIX `venv/bin` layout.
-
 ## Install
 
-Install into the `web` profile. The commands below pin the `v1.0.0`
+Install into the `web` profile. The commands below pin the `v1.0.1`
 release tag, which identifies the tested plugin revision.
 
 HTTPS tarball, no GitHub SSH key required:
 
 ```sh
 npx --yes @deepseek-ai/dsh@0.2.0-rc.2 plugin --profile web add \
-  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.0
+  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.1
 ```
 
 Git shorthand, requires GitHub SSH access:
 
 ```sh
 npx --yes @deepseek-ai/dsh@0.2.0-rc.2 plugin --profile web add \
-  github:11350613/SymPy-Calculate#v1.0.0
+  github:11350613/SymPy-Calculate#v1.0.1
 ```
 
 From a DeepSeek Harness source checkout (not this repository):
@@ -77,7 +74,7 @@ From a DeepSeek Harness source checkout (not this repository):
 ```sh
 pnpm install
 pnpm dsh plugin --profile web add \
-  github:11350613/SymPy-Calculate#v1.0.0
+  github:11350613/SymPy-Calculate#v1.0.1
 ```
 
 Start or restart DeepSeek Harness, then select **SymPy Calculate** when
@@ -103,7 +100,7 @@ Open the printed URL, create a new session, and confirm that
 
 ## Tested on
 
-- SymPy-Calculate release: `v1.0.0`
+- SymPy-Calculate release: `v1.0.1`
 - Ubuntu 24.04.4 LTS
 - DeepSeek Harness commit: [deepseek-ai/deepseek-harness@639ed01](https://github.com/deepseek-ai/deepseek-harness/commit/639ed015397290b3745d163aafe02ffee4aa3f84)
 - SymPy commit: [sympy/sympy@6aabf6a](https://github.com/sympy/sympy/commit/6aabf6ac9eddd1c5141ff9a3a35dcb53a7b02228)
