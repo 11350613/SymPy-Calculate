@@ -119,10 +119,13 @@ npx --yes @deepseek-ai/dsh@0.2.0-rc.2 --profile web --dump-config \
   | grep "SymPy Calculate"
 ```
 
-Boot the profile once without a browser to surface plugin activation errors:
+Boot the profile once without a browser to surface plugin activation
+errors. Wait for the `dsh web: http://127.0.0.1:<port>/?token=...` line, then
+stop it with Ctrl-C. A plugin activation failure exits non-zero and prints the
+loader diagnostic:
 
 ```sh
-npx --yes @deepseek-ai/dsh@0.2.0-rc.2 --profile web --help
+npx --yes @deepseek-ai/dsh@0.2.0-rc.2 --profile web --no-open --port 0
 ```
 
 Then start the UI and confirm that **SymPy Calculate** appears in the preset
@@ -167,8 +170,8 @@ a tool error.
 | `python3 -m venv` fails with `ensurepip is not available` | Install `python3-venv`; on Ubuntu 24.04 also install `python3.12-venv`. |
 | `ModuleNotFoundError: No module named 'mpmath'` | Install the checkout with `pip install -e`; a bare `git clone` has no dependencies. |
 | The preset is missing after installing | Restart the web profile, and check that `dsh-sympy-calculate` is listed in the profile's `package.json` dependencies and `dsh.profile.bundles`. |
-| The preset shows a broken/error marker | Run `dsh --profile web --help` and read the loader error. The usual cause is installing into a profile without `agent-preset-registry`. |
-| Remove the plugin | `dsh plugin --profile web remove dsh-sympy-calculate` |
+| The preset shows a broken/error marker | Boot the web profile with `npx --yes @deepseek-ai/dsh@0.2.0-rc.2 --profile web --no-open --port 0` and read the loader diagnostic. The usual cause is installing into a profile without `agent-preset-registry`. |
+| Remove the plugin | `npx --yes @deepseek-ai/dsh@0.2.0-rc.2 plugin --profile web remove dsh-sympy-calculate` |
 
 ## Tested on
 
