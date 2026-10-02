@@ -6,7 +6,15 @@ process using a local SymPy development checkout.
 
 ## Install
 
-[WIP]
+```sh
+dsh plugin --profile web add github:11350613/SymPy-Calculate
+```
+
+`dsh` above is your launcher: a global `dsh`, `npx @deepseek-ai/dsh`, or `pnpm dsh`
+in a source checkout.
+
+Start or restart DeepSeek Harness, then select **SymPy Calculate** when creating
+a session.
 
 ## Tested on
 
