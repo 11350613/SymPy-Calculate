@@ -22,7 +22,7 @@ process against a local SymPy development checkout.
 | git | Needed for the SymPy checkout; optional for the HTTPS install |
 | Python | 3.x with `venv` and `pip` available |
 | SymPy | Local checkout; default root `~/sympy-dev/sympy` |
-| Platform | Tested on Ubuntu 24.04.4 LTS only; other platforms are untested |
+| Platform | Tested on Ubuntu 24.04.4 LTS only |
 
 Among shipped profiles, install into `web` only. The preset needs the
 `agent-preset-registry` service supplied by the web bundle; in `headless`,
