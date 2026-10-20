@@ -74,7 +74,14 @@ environment that starts DeepSeek Harness:
 
 ## Install
 
-Install
+The easiest way is from the Web UI: go to **Plugins → Add plugin**, enter
+`@e_11350613/dsh-sympy-calculate@1.0.6`, choose **Custom address** under
+**Registry**, and enter `https://registry.npmjs.org/`. Then select **Install**.
+No GitHub URL or SSH key is needed.
+
+![Add plugin dialog with the package name filled in and a custom npm registry selected](assets/add-plugin.png)
+
+Alternatively, from the CLI, install
 [`@e_11350613/dsh-sympy-calculate`](https://www.npmjs.com/package/@e_11350613/dsh-sympy-calculate)
 from npm into the `web` profile. If `dsh` is already on your `PATH`, replace
 the `npx --yes @deepseek-ai/dsh@0.2.1-rc.2` prefix with `dsh`.
