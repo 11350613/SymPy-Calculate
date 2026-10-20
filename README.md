@@ -21,7 +21,7 @@ fresh process against a local SymPy development checkout.
 | pnpm | `11.24.0` |
 | git | `2.43.0` |
 | Python | `3.12.3` |
-| SymPy | <https://github.com/sympy/sympy/commit/6aabf6ac9eddd1c5141ff9a3a35dcb53a7b02228> |
+| SymPy | [sympy/sympy@6aabf6a](https://github.com/sympy/sympy/commit/6aabf6ac9eddd1c5141ff9a3a35dcb53a7b02228) |
 | OS | Ubuntu 24.04.4 LTS only |
 
 Among shipped profiles, install into `web` only. The preset needs the
