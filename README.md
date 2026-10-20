@@ -89,8 +89,8 @@ pnpm dsh plugin --profile web add \
 
 </details>
 
-Start or restart the web profile, then select **SymPy Calculate** when
-creating a session.
+Start or restart the `web` profile. **SymPy Calculate** will then be
+available as an agent preset for new tasks.
 
 ## Verify
 
@@ -101,8 +101,8 @@ npx --yes @deepseek-ai/dsh@0.2.1-rc.2 --profile web --dump-config \
   | grep "SymPy Calculate"
 ```
 
-Then start the UI and confirm that **SymPy Calculate** appears in the preset
-picker without an error marker:
+Then start the UI and confirm that **SymPy Calculate** appears as an agent
+preset without an error marker:
 
 ```sh
 npx --yes @deepseek-ai/dsh@0.2.1-rc.2 --profile web --no-open
