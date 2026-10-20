@@ -1,19 +1,45 @@
 {
-  "name": "dsh-sympy-calculate",
-  "version": "1.0.5",
-  "private": true,
-  "description": "A DeepSeek Harness agent preset based on minimal. It adds one stateless tool, sympy_calculate, which runs a complete Python script in a fresh process against a local SymPy development checkout.",
+  "name": "@e_11350613/dsh-sympy-calculate",
+  "version": "1.0.6",
+  "description": "A third-party DeepSeek Harness agent preset based on minimal. It adds one stateless tool, sympy_calculate, which runs a complete Python script in a fresh process against a local SymPy development checkout.",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-bundle",
+    "sympy",
+    "agent-preset"
+  ],
   "license": "MIT",
+  "author": "e_11350613",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/11350613/SymPy-Calculate.git"
+  },
+  "homepage": "https://github.com/11350613/SymPy-Calculate#readme",
+  "bugs": {
+    "url": "https://github.com/11350613/SymPy-Calculate/issues"
+  },
   "type": "module",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
   "files": [
     "index.js",
     "cordis.patch.yml",
     "THIRD_PARTY_NOTICES.md"
   ],
+  "engines": {
+    "dsh": ">=0.2.0 <0.3.0"
+  },
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

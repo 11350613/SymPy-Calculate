@@ -21,7 +21,7 @@
               write: false
               edit: false
           - id: tool-sympy-calculate
-            name: dsh-sympy-calculate
+            name: '@e_11350613/dsh-sympy-calculate'
           - id: compaction
             name: cordis:group
             group: true

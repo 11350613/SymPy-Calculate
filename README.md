@@ -1,8 +1,8 @@
 # SymPy-Calculate
 
-A DeepSeek Harness agent preset based on `minimal`. It adds one stateless
-tool, `sympy_calculate`, which runs a complete Python script in a fresh
-process against a local SymPy development checkout.
+A third-party DeepSeek Harness agent preset based on `minimal`. It adds one
+stateless tool, `sympy_calculate`, which runs a complete Python script in a
+fresh process against a local SymPy development checkout.
 
 > **Security:** `sympy_calculate` executes arbitrary Python with the current
 > user's permissions and inherited environment. It is not sandboxed. Enable
@@ -74,32 +74,38 @@ environment that starts DeepSeek Harness:
 
 ## Install
 
-Install into the `web` profile. The commands pin `v1.0.5`. If `dsh` is
-already on your `PATH`, replace the `npx --yes @deepseek-ai/dsh@0.2.1-rc.2`
-prefix with `dsh`.
-
-HTTPS tarball, recommended because it needs no GitHub SSH key:
+Install
+[`@e_11350613/dsh-sympy-calculate`](https://www.npmjs.com/package/@e_11350613/dsh-sympy-calculate)
+from npm into the `web` profile. If `dsh` is already on your `PATH`, replace
+the `npx --yes @deepseek-ai/dsh@0.2.1-rc.2` prefix with `dsh`.
 
 ```sh
 npx --yes @deepseek-ai/dsh@0.2.1-rc.2 plugin --profile web add \
-  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.5
+  @e_11350613/dsh-sympy-calculate@1.0.6
 ```
 
 <details>
-<summary>Alternative installs: GitHub shorthand or a DeepSeek Harness source checkout</summary>
+<summary>Alternative installs: GitHub tarball, GitHub shorthand, or a DeepSeek Harness source checkout</summary>
+
+HTTPS tarball, if you prefer to install directly from GitHub:
+
+```sh
+npx --yes @deepseek-ai/dsh@0.2.1-rc.2 plugin --profile web add \
+  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.6
+```
 
 Git shorthand, when GitHub SSH access is already configured:
 
 ```sh
 npx --yes @deepseek-ai/dsh@0.2.1-rc.2 plugin --profile web add \
-  github:11350613/SymPy-Calculate#v1.0.5
+  github:11350613/SymPy-Calculate#v1.0.6
 ```
 
-From a source checkout, use `pnpm dsh` and prefer the tarball form:
+From a DeepSeek Harness source checkout, use `pnpm dsh`:
 
 ```sh
 pnpm dsh plugin --profile web add \
-  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.5
+  @e_11350613/dsh-sympy-calculate@1.0.6
 ```
 
 </details>
@@ -149,12 +155,13 @@ a tool error.
 | Symptom | Fix |
 | --- | --- |
 | `sympy_calculate: no Python interpreter under ...` | Run the SymPy setup above, or export `SYMPY_ROOT` / `SYMPY_PYTHON` before starting `dsh`. |
-| Remove the plugin | `npx --yes @deepseek-ai/dsh@0.2.1-rc.2 plugin --profile web remove dsh-sympy-calculate` |
-| Removal fails with `ERR_PNPM_MISSING_TARBALL_INTEGRITY` | Run `cd ~/.dsh/profiles/web && pnpm remove dsh-sympy-calculate --config.trust-lockfile=true` (skips lockfile verification for this removal), then restart DSH. |
+| Remove the plugin | `npx --yes @deepseek-ai/dsh@0.2.1-rc.2 plugin --profile web remove @e_11350613/dsh-sympy-calculate` |
+| Removal fails with `ERR_PNPM_MISSING_TARBALL_INTEGRITY` | Run `cd ~/.dsh/profiles/web && pnpm remove @e_11350613/dsh-sympy-calculate --config.trust-lockfile=true` (skips lockfile verification for this removal), then restart DSH. |
 
 ## Tested on
 
-- SymPy-Calculate release: `v1.0.5`
+- SymPy-Calculate release: `v1.0.6`
+- npm package: `@e_11350613/dsh-sympy-calculate@1.0.6`
 - Ubuntu 24.04.4 LTS
 - DeepSeek Harness commit: [deepseek-ai/deepseek-harness@687f282e](https://github.com/deepseek-ai/deepseek-harness/commit/687f282e8625c6b8d11ff58211a90524be2e4317)
 - SymPy commit: [sympy/sympy@6aabf6a](https://github.com/sympy/sympy/commit/6aabf6ac9eddd1c5141ff9a3a35dcb53a7b02228)
