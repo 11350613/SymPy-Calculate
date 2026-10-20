@@ -25,9 +25,9 @@ process against a local SymPy development checkout.
 | OS | Ubuntu 24.04.4 LTS only |
 
 Among shipped profiles, install into `web` only. The preset needs the
-`agent-preset-registry` service supplied by the web bundle; in `headless`,
+`agent-preset-registry` service supplied by the `web` bundle; in `headless`,
 `sdk`, `sdk-minimal`, or `acp` it will not be selectable. A custom profile
-can use it if that profile supplies `agent-preset-registry`.
+can use the preset if it includes the `agent-preset-registry` service.
 
 ## Set up SymPy
 
