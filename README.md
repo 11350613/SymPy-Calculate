@@ -16,13 +16,13 @@ process against a local SymPy development checkout.
 
 | Requirement | Version / notes |
 | --- | --- |
-| DeepSeek Harness | `0.2.0-rc.2` |
-| Node.js | `^22.19.0` or `>=24.0.0` |
-| pnpm | `11.7.0`; install with `npm install -g pnpm@11.7.0` if missing |
-| git | Needed for the SymPy checkout; optional for the HTTPS install |
-| Python | 3.x with `venv` and `pip` available |
-| SymPy | Local checkout; default root `~/sympy-dev/sympy` |
-| Platform | Tested on Ubuntu 24.04.4 LTS only |
+| DeepSeek Harness | [deepseek-ai/deepseek-harness@687f282e](https://github.com/deepseek-ai/deepseek-harness/commit/687f282e8625c6b8d11ff58211a90524be2e4317) |
+| Node.js | `v22.23.2` |
+| pnpm | `11.24.0` |
+| git | `2.43.0` |
+| Python | `3.12.3` |
+| SymPy | <https://github.com/sympy/sympy/commit/6aabf6ac9eddd1c5141ff9a3a35dcb53a7b02228> |
+| OS | Ubuntu 24.04.4 LTS only |
 
 Among shipped profiles, install into `web` only. The preset needs the
 `agent-preset-registry` service supplied by the web bundle; in `headless`,
@@ -74,15 +74,15 @@ environment that starts DeepSeek Harness:
 
 ## Install
 
-Install into the `web` profile. The commands pin `v1.0.4`, the tested
-plugin revision. If `dsh` is already on your `PATH`, replace the
-`npx --yes @deepseek-ai/dsh@0.2.0-rc.2` prefix with `dsh`.
+Install into the `web` profile. The commands pin `v1.0.5`. If `dsh` is
+already on your `PATH`, replace the `npx --yes @deepseek-ai/dsh@0.2.1-rc.2`
+prefix with `dsh`.
 
 HTTPS tarball, recommended because it needs no GitHub SSH key:
 
 ```sh
-npx --yes @deepseek-ai/dsh@0.2.0-rc.2 plugin --profile web add \
-  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.4
+npx --yes @deepseek-ai/dsh@0.2.1-rc.2 plugin --profile web add \
+  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.5
 ```
 
 <details>
@@ -91,15 +91,15 @@ npx --yes @deepseek-ai/dsh@0.2.0-rc.2 plugin --profile web add \
 Git shorthand, when GitHub SSH access is already configured:
 
 ```sh
-npx --yes @deepseek-ai/dsh@0.2.0-rc.2 plugin --profile web add \
-  github:11350613/SymPy-Calculate#v1.0.4
+npx --yes @deepseek-ai/dsh@0.2.1-rc.2 plugin --profile web add \
+  github:11350613/SymPy-Calculate#v1.0.5
 ```
 
 From a source checkout, use `pnpm dsh` and prefer the tarball form:
 
 ```sh
 pnpm dsh plugin --profile web add \
-  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.4
+  https://codeload.github.com/11350613/SymPy-Calculate/tar.gz/v1.0.5
 ```
 
 </details>
@@ -112,7 +112,7 @@ creating a session.
 Check that the bundle and preset are in the composed config:
 
 ```sh
-npx --yes @deepseek-ai/dsh@0.2.0-rc.2 --profile web --dump-config \
+npx --yes @deepseek-ai/dsh@0.2.1-rc.2 --profile web --dump-config \
   | grep "SymPy Calculate"
 ```
 
@@ -120,7 +120,7 @@ Then start the UI and confirm that **SymPy Calculate** appears in the preset
 picker without an error marker:
 
 ```sh
-npx --yes @deepseek-ai/dsh@0.2.0-rc.2 --profile web --no-open
+npx --yes @deepseek-ai/dsh@0.2.1-rc.2 --profile web --no-open
 ```
 
 ## Usage
@@ -149,13 +149,13 @@ a tool error.
 | Symptom | Fix |
 | --- | --- |
 | `sympy_calculate: no Python interpreter under ...` | Run the SymPy setup above, or export `SYMPY_ROOT` / `SYMPY_PYTHON` before starting `dsh`. |
-| Remove the plugin | `npx --yes @deepseek-ai/dsh@0.2.0-rc.2 plugin --profile web remove dsh-sympy-calculate` |
+| Remove the plugin | `npx --yes @deepseek-ai/dsh@0.2.1-rc.2 plugin --profile web remove dsh-sympy-calculate` |
 
 ## Tested on
 
-- SymPy-Calculate release: `v1.0.4`
+- SymPy-Calculate release: `v1.0.5`
 - Ubuntu 24.04.4 LTS
-- DeepSeek Harness commit: [deepseek-ai/deepseek-harness@639ed01](https://github.com/deepseek-ai/deepseek-harness/commit/639ed015397290b3745d163aafe02ffee4aa3f84)
+- DeepSeek Harness commit: [deepseek-ai/deepseek-harness@687f282e](https://github.com/deepseek-ai/deepseek-harness/commit/687f282e8625c6b8d11ff58211a90524be2e4317)
 - SymPy commit: [sympy/sympy@6aabf6a](https://github.com/sympy/sympy/commit/6aabf6ac9eddd1c5141ff9a3a35dcb53a7b02228)
 
 ## Issues
