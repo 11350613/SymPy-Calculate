@@ -1,8 +1,8 @@
 {
   "name": "dsh-sympy-calculate",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
-  "description": "A DeepSeek Harness bundle: the minimal agent preset plus one stateless SymPy tool.",
+  "description": "A DeepSeek Harness agent preset based on minimal. It adds one stateless tool, sympy_calculate, which runs a complete Python script in a fresh process against a local SymPy development checkout.",
   "license": "MIT",
   "type": "module",
   "main": "index.js",
