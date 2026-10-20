@@ -31,46 +31,18 @@ can use the preset if it includes the `agent-preset-registry` service.
 
 ## Set up SymPy
 
-The tool uses this checkout root and interpreter candidates:
-
-```text
-~/sympy-dev/sympy
-~/sympy-dev/sympy/venv/bin/python
-~/sympy-dev/sympy/venv/bin/python3
-```
-
-On Ubuntu, install the venv tooling first if it is missing:
+The tool defaults to `~/sympy-dev/sympy` and its `venv`:
 
 ```sh
-sudo apt install -y python3-venv python3-pip
-```
-
-Then create the checkout:
-
-```sh
+sudo apt install -y python3-venv
 mkdir -p ~/sympy-dev
 git clone https://github.com/sympy/sympy.git ~/sympy-dev/sympy
-# Optional: use the exact tested SymPy revision.
-git -C ~/sympy-dev/sympy checkout 6aabf6ac9eddd1c5141ff9a3a35dcb53a7b02228
 python3 -m venv ~/sympy-dev/sympy/venv
 ~/sympy-dev/sympy/venv/bin/python -m pip install -e ~/sympy-dev/sympy
-echo 'venv/' >> ~/sympy-dev/sympy/.git/info/exclude
 ```
 
-The editable install also installs SymPy's external `mpmath` dependency.
-Confirm the checkout before installing the plugin:
-
-```sh
-~/sympy-dev/sympy/venv/bin/python -c "import sympy; print(sympy.__version__)"
-```
-
-To use another checkout or interpreter, set both variables in the
-environment that starts DeepSeek Harness:
-
-| Variable | Default | Meaning |
-| --- | --- | --- |
-| `SYMPY_ROOT` | `~/sympy-dev/sympy` | Checkout root; also the `PYTHONPATH` |
-| `SYMPY_PYTHON` | `<root>/venv/bin/python`, then `python3` | Python interpreter |
+For a different checkout or interpreter, set `SYMPY_ROOT` / `SYMPY_PYTHON`
+before starting DSH.
 
 ## Install
 
