@@ -94,19 +94,15 @@ available as an agent preset for new tasks.
 
 ## Verify
 
-Check that the bundle and preset are in the composed config:
+Check the composed profile:
 
 ```sh
 npx --yes @deepseek-ai/dsh@0.2.1-rc.2 --profile web --dump-config \
   | grep "SymPy Calculate"
 ```
 
-Then start the UI and confirm that **SymPy Calculate** appears as an agent
-preset without an error marker:
-
-```sh
-npx --yes @deepseek-ai/dsh@0.2.1-rc.2 --profile web --no-open
-```
+In the Web UI, confirm that **SymPy Calculate** appears as an agent preset
+without a **Failed to load** badge.
 
 ## Usage
 
