@@ -150,6 +150,7 @@ a tool error.
 | --- | --- |
 | `sympy_calculate: no Python interpreter under ...` | Run the SymPy setup above, or export `SYMPY_ROOT` / `SYMPY_PYTHON` before starting `dsh`. |
 | Remove the plugin | `npx --yes @deepseek-ai/dsh@0.2.1-rc.2 plugin --profile web remove dsh-sympy-calculate` |
+| Removal fails with `ERR_PNPM_MISSING_TARBALL_INTEGRITY` | Run `cd ~/.dsh/profiles/web && pnpm remove dsh-sympy-calculate --config.trust-lockfile=true` (skips lockfile verification for this removal), then restart DSH. |
 
 ## Tested on
 
