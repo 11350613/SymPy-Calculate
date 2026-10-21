@@ -120,11 +120,6 @@ Output:
 sqrt(2)*pi/2
 ```
 
-Because every call starts a fresh interpreter and pays the SymPy import
-cost, batch related computations into one script instead of making many
-small calls. stdout and stderr are combined; a non-zero exit is returned as
-a tool error.
-
 ## Troubleshooting
 
 | Symptom | Fix |
