@@ -12,23 +12,6 @@ fresh process against a local SymPy development checkout.
 
 - Each call is bounded by a 120-second timeout; stdout and stderr are each capped at 2,000,000 characters.
 
-## Requirements
-
-| Requirement | Version / notes |
-| --- | --- |
-| DeepSeek Harness | [deepseek-ai/deepseek-harness@687f282e](https://github.com/deepseek-ai/deepseek-harness/commit/687f282e8625c6b8d11ff58211a90524be2e4317) |
-| Node.js | `v22.23.2` |
-| pnpm | `11.24.0` |
-| git | `2.43.0` |
-| Python | `3.12.3` |
-| SymPy | [sympy/sympy@6aabf6a](https://github.com/sympy/sympy/commit/6aabf6ac9eddd1c5141ff9a3a35dcb53a7b02228) |
-| OS | Ubuntu 24.04.4 LTS only |
-
-Among shipped profiles, install into `web` only. The preset needs the
-`agent-preset-registry` service supplied by the `web` bundle; in `headless`,
-`sdk`, `sdk-minimal`, or `acp` it will not be selectable. A custom profile
-can use the preset if it includes the `agent-preset-registry` service.
-
 ## Set up SymPy
 
 The tool defaults to `~/sympy-dev/sympy` and its `venv`:
@@ -45,6 +28,10 @@ For a different checkout or interpreter, set `SYMPY_ROOT` / `SYMPY_PYTHON`
 before starting DSH.
 
 ## Install
+
+Among shipped profiles, install into `web` only. The `web` bundle provides
+the `agent-preset-registry` service the preset needs. A custom profile can
+use the preset if that profile provides the service as well.
 
 The easiest way is from the Web UI: go to **Plugins → Add plugin**, enter
 `@e_11350613/dsh-sympy-calculate@1.0.6`, choose **Custom address** under
@@ -133,6 +120,10 @@ sqrt(2)*pi/2
 - SymPy-Calculate release: `v1.0.6`
 - npm package: `@e_11350613/dsh-sympy-calculate@1.0.6`
 - Ubuntu 24.04.4 LTS
+- Node.js `v22.23.2`
+- pnpm `11.24.0`
+- git `2.43.0`
+- Python `3.12.3`
 - DeepSeek Harness commit: [deepseek-ai/deepseek-harness@687f282e](https://github.com/deepseek-ai/deepseek-harness/commit/687f282e8625c6b8d11ff58211a90524be2e4317)
 - SymPy commit: [sympy/sympy@6aabf6a](https://github.com/sympy/sympy/commit/6aabf6ac9eddd1c5141ff9a3a35dcb53a7b02228)
 
