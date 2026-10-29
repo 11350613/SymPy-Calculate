@@ -2,7 +2,7 @@
 
 A third-party DeepSeek Harness agent preset based on `minimal`. It adds one
 stateless tool, `sympy_calculate`, which runs a complete Python script in a
-fresh process against a local SymPy development checkout.
+fresh process against a local SymPy checkout.
 
 > **Security:** `sympy_calculate` executes arbitrary Python with the current
 > user's permissions and inherited environment. It is not sandboxed. Enable
