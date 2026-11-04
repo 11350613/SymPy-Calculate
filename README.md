@@ -125,7 +125,7 @@ sqrt(2)*pi/2
 - git `2.43.0`
 - Python `3.12.3`
 - DeepSeek Harness commit: [deepseek-ai/deepseek-harness@687f282e](https://github.com/deepseek-ai/deepseek-harness/commit/687f282e8625c6b8d11ff58211a90524be2e4317)
-- SymPy commit: [sympy/sympy@6aabf6a](https://github.com/sympy/sympy/commit/6aabf6ac9eddd1c5141ff9a3a35dcb53a7b02228)
+- SymPy commit: [sympy/sympy@eb51b9b](https://github.com/sympy/sympy/commit/eb51b9b1eb2d98b7bdedc440bb4944b95f96d1de)
 
 ## Issues
 
